@@ -2,8 +2,10 @@ package name.legkodymov.test.student.controller;
 
 import name.legkodymov.test.student.model.Student;
 import name.legkodymov.test.student.repository.StudentRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +27,9 @@ public class StudentController {
 
     @GetMapping("/{id}")
     public Student getById(@PathVariable Long id) {
-        return repository.findById(id).orElseThrow(new );
+        return repository.findById(id).orElseThrow(() -> {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student not found");
+        });
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
