@@ -1,4 +1,4 @@
-package name.legkodymov.test.student;
+package name.legkodymov.test.student.controller;
 
 import name.legkodymov.test.student.model.Student;
 import name.legkodymov.test.student.repository.StudentRepository;
@@ -25,7 +25,7 @@ public class StudentController {
 
     @GetMapping("/{id}")
     public Student getById(@PathVariable Long id) {
-        return repository.findById(id).orElseThrow();
+        return repository.findById(id).orElseThrow(new );
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
